@@ -38,6 +38,11 @@ def main():
                         help="Ultra-short durations to verify it works")
     args = parser.parse_args()
 
+    if args.work < 0 or args.short_break < 0 or args.long_break < 0:
+        parser.error("durations must be >= 0 minutes")
+    if args.cycles < 1:
+        parser.error("--cycles must be at least 1")
+
     if args.test:
         args.work = args.short_break = args.long_break = 0.05
 
